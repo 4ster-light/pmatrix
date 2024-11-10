@@ -14,11 +14,10 @@ Original video: [Here](https://github.com/4ster-light/hsmatrix/blob/main/matrix.
 stack run
 ```
 
-> [!NOTE]
+> [!IMPORTANT]
 > This program is only tested on Linux.
 > And it doesn't have the full functionality of `cmatrix`.
 >
-> [!IMPORTANT]
 > You need to have installed:
 >
 > - `cabal`
