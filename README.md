@@ -2,6 +2,10 @@
 
 An alternative to the famous program written in C: `cmatrix`.
 
+## Example
+
+![Example](https://github.com/4ster-light/hsmatrix/blob/main/matrix.mp4)
+
 ## Usage
 
 ```bash
@@ -17,4 +21,5 @@ stack run
 > - `cabal`
 > - `stack`
 > - `ghc`
+>
 > In order to run this program.
