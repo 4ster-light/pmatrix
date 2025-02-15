@@ -2,12 +2,6 @@
 
 An alternative to the famous program written in C `cmatrix` implemented in Haskell.
 
-## Example
-
-![Example](https://github.com/4ster-light/matrix/blob/main/matrix.gif)
-
-Original video: [Here](https://github.com/4ster-light/matrix/blob/main/matrix.mp4)
-
 ## Usage
 
 ```bash

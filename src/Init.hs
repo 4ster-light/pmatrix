@@ -1,8 +1,9 @@
-module Init (
-    initCell,
+module Init
+  ( initCell,
     initColumn,
     initMatrix,
-) where
+  )
+where
 
 import Control.Monad (replicateM)
 import Control.Monad.State

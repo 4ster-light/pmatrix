@@ -2,60 +2,36 @@ module Main (main) where
 
 import Control.Concurrent (threadDelay)
 import Control.Monad.State
-import Data.List (transpose)
+import Init
+import Render
 import System.Console.ANSI
 import qualified System.Console.Terminal.Size as TS
-import System.IO (hFlush, stdout)
 import System.Random
-import Control.Monad (forM_)
-
-import Init
 import Types
 import Update
 
--- | Determine the color of a cell based on its intensity
-fadeColor :: Int -> Color
-fadeColor i
-  | i == 5 = White
-  | i > 0 = Green
-  | otherwise = Black
-
--- | Render the matrix to the terminal
-renderMatrix :: Matrix -> IO ()
-renderMatrix matrix = do
-  setCursorPosition 0 0
-  forM_ (transpose matrix) $ \row -> do
-    forM_ row $ \cell -> do
-      setSGR [SetColor Foreground Vivid (fadeColor (intensity cell))]
-      putChar $ if intensity cell > 0 then chars !! charIndex cell else ' '
-    putChar '\n'
-  hFlush stdout
-
--- | Get the current terminal size
-getCurrentTerminalSize :: IO (Int, Int)
-getCurrentTerminalSize = do
+getTerminalDimensions :: IO (Int, Int)
+getTerminalDimensions = do
   maybeSize <- TS.size
-  case maybeSize of
-    Just (TS.Window rows cols) -> return (cols, rows - 1)
-    Nothing -> return (80, 24) -- Default size if unable to determine
+  pure $ case maybeSize of
+    Just (TS.Window rows cols) -> (cols, rows - 1)
+    Nothing -> (80, 24) -- Default size if unavailable
 
--- | Main loop for updating and rendering the matrix
 mainLoop :: Matrix -> StdGen -> IO ()
 mainLoop matrix gen = do
-  (w, h) <- getCurrentTerminalSize
-  let (adjustedMatrix, gen1) = runState (adjustMatrixSize w h matrix) gen
-  let (newMatrix, gen2) = runState (updateMatrix h adjustedMatrix) gen1
-  let updatedMatrix = map (map updateCell) newMatrix
-  renderMatrix updatedMatrix
-  threadDelay 50000 -- 50ms delay
-  mainLoop updatedMatrix gen2
+  (w, h) <- getTerminalDimensions
+  let (adjusted, gen1) = runState (adjustMatrixSize w h matrix) gen
+  let (updated, gen2) = runState (updateMatrix h adjusted) gen1
 
--- | Main function to set up and start the matrix rain effect
+  renderMatrix $ map (map updateCell) updated
+  threadDelay 50000
+  mainLoop updated gen2
+
 main :: IO ()
 main = do
   hideCursor
   clearScreen
-  (w, h) <- getCurrentTerminalSize
+  (w, h) <- getTerminalDimensions
   gen <- getStdGen
-  let (initialMatrix, initialGen) = runState (initMatrix w h) gen
-  mainLoop initialMatrix initialGen
+  let (initial, gen') = runState (initMatrix w h) gen
+  mainLoop initial gen'
