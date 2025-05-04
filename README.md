@@ -1,22 +1,45 @@
-# matrix
+# Matrix
 
-An alternative to the famous program written in C `cmatrix` implemented in Haskell.
+An alternative to the famous cmatrix program, implemented in F# using .NET.
+
+## Overview
+
+This program creates a digital rain effect, similar to the iconic Matrix movie
+visuals, with falling characters in the terminal. It is written in F# and runs
+as a .NET console application.
 
 ## Usage
 
+Ensure you have the .NET SDK installed (compatible with .NET 9.0). Clone the
+repository and navigate to the project directory. Build and run the project
+using:
+
 ```bash
-stack run
+dotnet run
 ```
 
+To build a release binary:
+
+```bash
+dotnet build -c Release
+```
+
+The program will display the Matrix digital rain effect in your terminal. Resize
+the terminal window to adjust the display dynamically.
+
+## Requirements
+
+- .NET SDK 9.0 or later.
+- A terminal that supports ANSI escape codes (e.g., most Linux terminals).
+
 > [!IMPORTANT]
-> This program is only tested on Linux.
-> And it doesn't have the full functionality of `cmatrix`.
->
-> You need to have installed:
->
-> - `cabal`
-> - `stack`
-> - `ghc`
->
-> In order to run this program.
->
+> This program has been tested only on Linux. It may work on other platforms
+> with ANSI-compatible terminals (e.g., Windows Terminal, macOS Terminal), but
+> compatibility is not guaranteed.
+
+The program does not yet implement the full functionality of cmatrix (e.g.,
+customizable colors or character sets).
+
+## License
+
+BSD 3-Clause License
