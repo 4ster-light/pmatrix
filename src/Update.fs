@@ -35,10 +35,10 @@ let updateColumn height (rng: Random) (col: Column) =
     // Combine new cells with shifted column, updating intensities
     newCells @ (shifted |> List.map updateCell)
 
-let updateMatrix height (rng: Random) (matrix: Matrix) =
+let updateMatrix height rng (matrix: Matrix) =
     matrix |> List.map (updateColumn height rng)
 
-let adjustMatrixSize width height (rng: Random) (matrix: Matrix) =
+let adjustMatrixSize width height rng (matrix: Matrix) =
     let currentWidth = matrix.Length
 
     let newCols =

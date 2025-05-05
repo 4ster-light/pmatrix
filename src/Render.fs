@@ -6,8 +6,8 @@ open Types
 
 let fadeColor intensity =
     match intensity with
-    | i when i >= 3 -> Vivid, Green // Bright trail
-    | i when i >= 1 -> Dull, Green // Dim trail
+    | i when i >= 3 -> Vivid, Green
+    | i when i >= 1 -> Dull, Green
     | _ -> Dull, Black // Inactive
 
 let renderMatrix (matrix: Matrix) =
@@ -22,11 +22,11 @@ let renderMatrix (matrix: Matrix) =
 
             let ansiColor =
                 match colorIntensity, color with
-                | Vivid, Green -> 92 // Bright green
-                | Dull, Green -> 32 // Dim green
-                | Vivid, White -> 97 // Bright white
-                | Dull, White -> 97 // Dim white
-                | _, Black -> 30 // Black
+                | Vivid, Green -> 92
+                | Dull, Green -> 32
+                | Vivid, White -> 97
+                | Dull, White -> 97
+                | _, Black -> 30
 
             let char = if cell.Intensity > 0 then chars.[cell.CharIndex] else ' '
             sb.Append $"\x1B[{ansiColor}m{char}" |> ignore
