@@ -7,7 +7,7 @@ open Render
 open Update
 open Types
 
-let getTerminalDimensions () =
+let private getTerminalDimensions () =
     try
         let width = Console.WindowWidth
         let height = Console.WindowHeight - 1
@@ -16,19 +16,18 @@ let getTerminalDimensions () =
     with _ ->
         80, 24
 
-let rec mainLoop matrix lastWidth lastHeight rng =
+let rec private mainLoop (matrix: Matrix) (lastWidth: int) (lastHeight: int) (rng: Random) : Async<'a> =
     async {
         let stopwatch = Stopwatch.StartNew()
         let width, height = getTerminalDimensions ()
 
-        let newMatrix: Matrix =
+        let newMatrix =
             if width <> lastWidth || height <> lastHeight then
                 adjustMatrixSize width height rng matrix
             else
                 matrix
 
-        let updated: Matrix = updateMatrix height rng newMatrix
-
+        let updated = updateMatrix height rng newMatrix
         renderMatrix updated
 
         let elapsedMs = stopwatch.ElapsedMilliseconds

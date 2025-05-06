@@ -10,7 +10,6 @@ type ColorIntensity =
     | Dull
 
 type Cell = { CharIndex: int; Intensity: int }
-
 type Column = Cell list
 type Matrix = Column list
 

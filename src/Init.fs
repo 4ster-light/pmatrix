@@ -3,12 +3,14 @@ module Init
 open System
 open Types
 
-let initCell (rng: Random) =
-    { CharIndex = rng.Next(0, chars.Length)
-      Intensity = 0 }
+// All create empty instances respectively, just for the initial iteration and initialisation of the matrix
 
-let initColumn height (rng: Random) =
+let initCell (rng: Random) : Cell =
+    { CharIndex = rng.Next(0, chars.Length) // Randomly select a character
+      Intensity = 0 } // Initialize intensity to 0 (not active because first frame)
+
+let initColumn (height: int) (rng: Random) : Column =
     List.init height (fun _ -> initCell rng)
 
-let initMatrix width height (rng: Random) =
+let initMatrix (width: int) (height: int) (rng: Random) : Matrix =
     List.init width (fun _ -> initColumn height rng)

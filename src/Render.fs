@@ -4,21 +4,23 @@ open System
 open System.Text
 open Types
 
-let fadeColor intensity =
+let private getColor (intensity: int) : ColorIntensity * Color =
     match intensity with
     | i when i >= 3 -> Vivid, Green
     | i when i >= 1 -> Dull, Green
     | _ -> Dull, Black // Inactive
 
+
 let renderMatrix (matrix: Matrix) =
     let sb = StringBuilder()
     Console.SetCursorPosition(0, 0)
 
-    let transposed = matrix |> List.transpose
+    let transposed: Matrix = matrix |> List.transpose
 
+    // Apply ANSI escape codes to set the color for each cell
     for row in transposed do
         for cell in row do
-            let colorIntensity, color = fadeColor cell.Intensity
+            let colorIntensity, color = cell.Intensity |> getColor
 
             let ansiColor =
                 match colorIntensity, color with
@@ -28,6 +30,7 @@ let renderMatrix (matrix: Matrix) =
                 | Dull, White -> 97
                 | _, Black -> 30
 
+            // Only render the character if the intensity is greater than 0
             let char = if cell.Intensity > 0 then chars.[cell.CharIndex] else ' '
             sb.Append $"\x1B[{ansiColor}m{char}" |> ignore
 
