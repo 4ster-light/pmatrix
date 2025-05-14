@@ -1,48 +1,17 @@
 ﻿open System
 
-// Configuration
 let FRAME_DELAY = 33 // Milliseconds per frame (≈ 30 FPS)
 let DROP_PROBABILITY = 40 // Higher number is less frequent drops (40 for ~2.5% chance)
-let CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()".ToCharArray()
+let CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&".ToCharArray()
 
 type Cell = char option // None for empty, Some char for visible
 type Column = Cell list
 type Matrix = Column list
 
-// Initialize a column with all cells empty
+/// Initialize a column with all cells empty
 let initColumn (height: int) : Column = List.replicate height None
 
-// Initialize the matrix based on terminal width and height
-let initMatrix (width: int) (height: int) : Matrix =
-    List.init width (fun _ -> initColumn height)
-
-// Render the matrix to the terminal
-let renderMatrix (matrix: Matrix) (width: int) (height: int) : unit =
-    let frame =
-        [ for row in 0 .. height - 1 do
-              let line =
-                  [ for col in 0 .. width - 1 do
-                        let cell =
-                            if col < matrix.Length && row < matrix[col].Length then
-                                matrix[col][row]
-                            else
-                                None
-
-                        yield
-                            match cell with
-                            | Some c -> c
-                            | None -> ' ' ]
-                  |> Array.ofList
-                  |> String
-
-              yield line ]
-        |> String.concat "\n"
-
-    Console.SetCursorPosition(0, 0)
-    Console.Write $"\x1B[32m{frame}\x1B[0m" // Set color to green for the entire frame and reset after
-    Console.Out.Flush()
-
-// Update a column to simulate falling rain with random characters per drop
+/// Update a column to simulate falling rain with random characters per drop
 let updateColumn (height: int) (rng: Random) (col: Column) : Column =
     let isActive = col |> List.exists Option.isSome
     let shouldStart = not isActive && rng.Next(0, DROP_PROBABILITY) = 0
@@ -54,13 +23,47 @@ let updateColumn (height: int) (rng: Random) (col: Column) : Column =
     else
         None :: col |> List.truncate height // Shift down
 
-// Update the entire matrix
+/// Initialize the matrix based on terminal width and height
+let initMatrix (width: int) (height: int) : Matrix =
+    List.init width (fun _ -> initColumn height)
+
+/// Render the matrix to the terminal
+let renderMatrix (matrix: Matrix) (width: int) (height: int) : unit =
+    Console.SetCursorPosition(0, 0)
+
+    // Set color to green for the entire frame
+    Console.ForegroundColor <- ConsoleColor.Green
+    Console.BackgroundColor <- ConsoleColor.Black
+
+    [ for row in 0 .. height - 1 do
+          yield
+              [ for col in 0 .. width - 1 do
+                    let cell =
+                        if col < matrix.Length && row < matrix[col].Length then
+                            matrix[col][row]
+                        else
+                            None
+
+                    yield
+                        match cell with
+                        | Some c -> c
+                        | None -> ' ' ]
+              |> Array.ofList
+              |> String ]
+    |> String.concat "\n"
+    |> Console.Write
+
+    // Reset color after rendering
+    Console.ResetColor()
+    Console.Out.Flush()
+
+/// Update the entire matrix
 let updateMatrix (height: int) (rng: Random) (matrix: Matrix) : Matrix =
     matrix |> List.map (updateColumn height rng)
 
-// Adjust matrix size for terminal resize
-let adjustMatrixSize (width: int) (height: int) (matrix: Matrix) : Matrix =
-    let newMatrix =
+/// Adjust matrix size for terminal resize
+let adjustMatrix (width: int) (height: int) (matrix: Matrix) : Matrix =
+    let newMatrix: Matrix =
         if width > matrix.Length then
             matrix @ List.init (width - matrix.Length) (fun _ -> initColumn height)
         else
@@ -88,7 +91,7 @@ let rec mainLoop (matrix: Matrix) (lastWidth: int) (lastHeight: int) (rng: Rando
 
         let adjustedMatrix =
             if width <> lastWidth || height <> lastHeight then
-                adjustMatrixSize width height matrix
+                adjustMatrix width height matrix
             else
                 matrix
 
