@@ -1,50 +1,52 @@
-# 🎬 FMatrix
+# SMatrix
 
-An alternative to the famous cmatrix program, implemented in F# using .NET.
+A Matrix digital rain effect terminal application, implemented in Swift.
 
-## 📜 Overview
+## Overview
 
 This program creates a digital rain effect, similar to the iconic Matrix movie
-visuals, with falling characters in the terminal. It is written in F# and runs
-as a .NET console application.
+visuals, with falling characters in the terminal. Written in modern Swift with
+improved features including variable drop speeds, intensity-based coloring, and
+optimized rendering.
 
-## 🛠 Usage
+## Features
 
-Ensure you have the .NET SDK installed (compatible with .NET 9.0). Clone the
-repository and navigate to the project directory. Build and run the project
-using:
+- **Dynamic drop speeds**: Each drop falls at a random speed for more variety
+- **Intensity-based coloring**: Leading characters are brighter green
+- **Smooth animations**: Optimized rendering at ~30 FPS
+- **Terminal resize support**: Automatically adjusts to window size changes
+- **Graceful shutdown**: Handles Ctrl+C cleanly
+
+## Usage
+
+Ensure you have Swift installed. Clone the repository and navigate to the
+project directory. Build and run:
 
 ```bash
-dotnet run
+swift run
 ```
 
-To build a release binary:
+To build an optimized release binary:
 
 ```bash
-dotnet build -c Release
+swift build -c release
+./.build/release/smatrix
 ```
 
-The program will display the Matrix digital rain effect in your terminal. You
-can resize the terminal window to adjust the display dynamically.
+The program will display the Matrix digital rain effect in your terminal. Resize
+the terminal window to see the display adjust dynamically. Press Ctrl+C to exit.
 
-## 📋 Requirements
+## Requirements
 
-- .NET SDK 9.0 or later.
-- A terminal that supports ANSI escape codes (e.g., most Linux terminals).
+- Swift 5.0 or later
+- A terminal that supports ANSI escape codes (most modern terminals)
+- Linux or macOS
 
-> [!IMPORTANT]
-> This program has been tested only on Linux. It should work on other platforms
-> with ANSI-compatible terminals (e.g., Windows Terminal, macOS Terminal), but
-> compatibility is not guaranteed.
+## License
 
-The program does not yet implement the full functionality of cmatrix (e.g.,
-customizable colors or character sets).
+MIT
 
-## 📄 License
-
-BSD 3-Clause License
-
-## 💝 Sponsor
+## Sponsor
 
 If you like this project, consider supporting me by buying me a coffee.
 
