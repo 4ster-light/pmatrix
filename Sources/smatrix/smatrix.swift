@@ -143,7 +143,7 @@ class Matrix {
         }
 
         print(output, terminator: "")
-        fflush(nil)
+        fflush(nil)  // Flush all buffers to ensure immediate output
     }
 }
 
@@ -167,13 +167,13 @@ struct Terminal {
     static func setup() {
         print(Config.clearScreen, terminator: "")
         print(Config.hideCursor, terminator: "")
-        fflush(nil)
+        fflush(nil)  // Flush all buffers to ensure immediate output
     }
 
     static func cleanup() {
         print(Config.showCursor, terminator: "")
         print(Config.reset, terminator: "")
-        fflush(nil)
+        fflush(nil)  // Flush all buffers to ensure immediate output
     }
 }
 
