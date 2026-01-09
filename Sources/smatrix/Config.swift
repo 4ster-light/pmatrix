@@ -1,4 +1,4 @@
-struct Config {
+enum Config {
 	static let frameDelay: UInt32 = 33_000  // Microseconds (≈30 FPS)
 	static let dropProbability = 40
 	static let minDropLength = 6
