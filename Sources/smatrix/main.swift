@@ -2,7 +2,7 @@ import Foundation
 
 Terminal.setup()
 
-var (width, height) = Terminal.getSize()
+var (width, height) = Terminal.size
 let matrix = Matrix(width: width, height: height)
 
 signal(SIGINT) { _ in
@@ -13,7 +13,7 @@ signal(SIGINT) { _ in
 while true {
 	let startTime = Date()
 
-	let (newWidth, newHeight) = Terminal.getSize()
+	let (newWidth, newHeight) = Terminal.size
 	if newWidth != width || newHeight != height {
 		width = newWidth
 		height = newHeight
