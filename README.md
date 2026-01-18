@@ -1,11 +1,11 @@
-# SMatrix
+# PMatrix
 
-A Matrix digital rain effect terminal application, implemented in Swift.
+A Matrix digital rain effect terminal application, written in Python.
 
 ## Overview
 
 This program creates a digital rain effect, similar to the iconic Matrix movie
-visuals, with falling characters in the terminal. Written in modern Swift with
+visuals, with falling characters in the terminal. Written in modern Python with
 improved features including variable drop speeds, intensity-based coloring, and
 optimized rendering.
 
@@ -16,38 +16,54 @@ optimized rendering.
 - **Smooth animations**: Optimized rendering at ~30 FPS
 - **Terminal resize support**: Automatically adjusts to window size changes
 - **Graceful shutdown**: Handles Ctrl+C cleanly
+- **No external dependencies**: Uses Python standard library only
 
-## Usage
+## Installation
 
-Ensure you have Swift installed. Clone the repository and navigate to the
-project directory. Build and run:
+### Using UV (recommended)
 
-```bash
-swift run
-```
-
-To build an optimized release binary:
+Install directly from GitHub:
 
 ```bash
-swift build -c release
-./.build/release/smatrix
+uv tool install git+https://github.com/4ster-light/pmatrix
 ```
 
-The program will display the Matrix digital rain effect in your terminal. Resize
-the terminal window to see the display adjust dynamically. Press Ctrl+C to exit.
+Then run:
+
+```bash
+pmatrix
+```
+
+### Using pip
+
+Clone the repository and install:
+
+```bash
+pip install git+https://github.com/4ster-light/pmatrix
+```
+
+Then run:
+
+```bash
+pmatrix
+```
+
+### From source with UV
+
+Clone the repository:
+
+```bash
+git clone https://github.com/4ster-light/pmatrix
+cd pmatrix
+uv tool install .
+```
 
 ## Requirements
 
-- Swift 5.0 or later
+- Python 3.10 or later
 - A terminal that supports ANSI escape codes (most modern terminals)
-- Linux or macOS
+- Linux, macOS, or compatible terminal
 
 ## License
 
 MIT
-
-## Sponsor
-
-If you like this project, consider supporting me by buying me a coffee.
-
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/B0B41HVJUR)
