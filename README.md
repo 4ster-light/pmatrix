@@ -1,11 +1,11 @@
-# SMatrix
+# PMatrix
 
-A Matrix digital rain effect terminal application, implemented in Swift.
+A Matrix digital rain effect terminal application, written in Python.
 
 ## Overview
 
 This program creates a digital rain effect, similar to the iconic Matrix movie
-visuals, with falling characters in the terminal. Written in modern Swift with
+visuals, with falling characters in the terminal. Written in modern Python with
 improved features including variable drop speeds, intensity-based coloring, and
 optimized rendering.
 
@@ -16,21 +16,56 @@ optimized rendering.
 - **Smooth animations**: Optimized rendering at ~30 FPS
 - **Terminal resize support**: Automatically adjusts to window size changes
 - **Graceful shutdown**: Handles Ctrl+C cleanly
+- **No external dependencies**: Uses Python standard library only
+
+## Installation
+
+### Using UV (recommended)
+
+Install directly from GitHub:
+
+```bash
+uv tool install git+https://github.com/anomalyco/smatrix
+```
+
+Then run:
+
+```bash
+smatrix
+```
+
+### Using pip
+
+Clone the repository and install:
+
+```bash
+git clone https://github.com/anomalyco/smatrix
+cd smatrix
+pip install .
+```
+
+Then run:
+
+```bash
+smatrix
+```
+
+### From source with UV
+
+Clone the repository:
+
+```bash
+git clone https://github.com/anomalyco/smatrix
+cd smatrix
+uv run smatrix
+```
 
 ## Usage
 
-Ensure you have Swift installed. Clone the repository and navigate to the
-project directory. Build and run:
+Run the program:
 
 ```bash
-swift run
-```
-
-To build an optimized release binary:
-
-```bash
-swift build -c release
-./.build/release/smatrix
+smatrix
 ```
 
 The program will display the Matrix digital rain effect in your terminal. Resize
@@ -38,16 +73,10 @@ the terminal window to see the display adjust dynamically. Press Ctrl+C to exit.
 
 ## Requirements
 
-- Swift 5.0 or later
+- Python 3.10 or later
 - A terminal that supports ANSI escape codes (most modern terminals)
-- Linux or macOS
+- Linux, macOS, or compatible terminal
 
 ## License
 
 MIT
-
-## Sponsor
-
-If you like this project, consider supporting me by buying me a coffee.
-
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/B0B41HVJUR)

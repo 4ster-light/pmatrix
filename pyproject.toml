@@ -1,0 +1,70 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "smatrix"
+version = "1.0.0"
+description = "A Matrix digital rain effect terminal application, written in Python"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "OpenCode Contributors" }]
+keywords = ["matrix", "terminal", "animation", "rain", "effect"]
+requires-python = ">=3.10"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Multimedia",
+]
+
+[project.urls]
+Homepage = "https://github.com/anomalyco/smatrix"
+Repository = "https://github.com/anomalyco/smatrix.git"
+Issues = "https://github.com/anomalyco/smatrix/issues"
+
+[project.scripts]
+smatrix = "pmatrix.cli:main"
+
+[dependency-groups]
+dev = ["ruff>=0.7.0", "ty>=0.0.8"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pmatrix"]
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "tab"
+docstring-code-format = true
+
+[tool.ruff.lint]
+select = [
+	"E",     # pycodestyle errors
+	"W",     # pycodestyle warnings
+	"F",     # Pyflakes
+	"I",     # isort
+	"N",     # pep8-naming
+	"UP",    # pyupgrade
+	"RUF",   # Ruff-specific rules
+	"B",     # flake8-bugbear
+	"A",     # flake8-builtins
+	"C4",    # flake8-comprehensions
+	"SIM",   # flake8-simplify
+	"ARG",   # flake8-unused-arguments
+	"PTH",   # flake8-use-pathlib
+]
+ignore = [
+	"E501",  # line too long (handled by formatter)
+	"W191",  # indentation contains tabs (we use tabs intentionally)
+	"ARG001", # unused function argument (okay in signal handlers, etc)
+]
