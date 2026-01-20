@@ -24,7 +24,3 @@ def cleanup() -> None:
 def get_size() -> tuple[int, int]:
 	term_size = get_terminal_size(fallback=(80, 24))
 	return (term_size.columns, term_size.lines)
-
-
-def clear_and_home() -> str:
-	return "\x1b[H"

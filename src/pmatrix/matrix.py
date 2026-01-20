@@ -1,26 +1,20 @@
 import sys
 
 from .column import Column
-from .config import BRIGHT_GREEN, GREEN, RESET
-from .terminal import clear_and_home
+from .config import BRIGHT_GREEN, GREEN, RESET, CLEAR_AND_HOME
 
 
 class Matrix:
-	"""Manages the matrix animation state and rendering"""
-
 	def __init__(self, width: int, height: int) -> None:
-		"""Initialize the matrix"""
 		self.width = width
 		self.height = height
 		self.columns = [Column(height) for _ in range(width)]
 
 	def update(self) -> None:
-		"""Update all columns to advance animation"""
 		for column in self.columns:
 			column.update()
 
 	def resize(self, width: int, height: int) -> None:
-		"""Resize the matrix to new dimensions"""
 		if width == self.width and height == self.height:
 			return
 
@@ -38,12 +32,11 @@ class Matrix:
 		self.height = height
 
 	def render(self) -> None:
-		"""Render the current frame to stdout"""
-		output = [clear_and_home()]
+		output = [CLEAR_AND_HOME]
 
 		for row in range(self.height):
 			for col in range(self.width):
-				result = self.columns[col].character_at(row)
+				result = self.columns[col].char_at(row)
 				if result is not None:
 					char, intensity = result
 					color = BRIGHT_GREEN if intensity > 0.7 else GREEN

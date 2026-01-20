@@ -5,14 +5,12 @@ from .drop import Drop
 
 
 class Column:
-	"""Manages a single column with a falling drop."""
-
 	def __init__(self, height: int) -> None:
 		self.height = height
 		self.drop: Drop | None = None
 
 	def update(self) -> None:
-		"""Update the column state, moving existing drops or creating new ones"""
+		"""Move existing drops or creating new ones"""
 		if self.drop is not None:
 			self.drop.update()
 
@@ -21,12 +19,11 @@ class Column:
 		elif random.randint(0, DROP_PROBABILITY - 1) == 0:
 			self.drop = Drop.create()
 
-	def character_at(self, row: int) -> tuple[str, float] | None:
-		"""Get the character and intensity at a specific row"""
+	def char_at(self, row: int) -> tuple[str, float] | None:
 		if self.drop is None:
 			return None
 
-		char = self.drop.character_at(row)
+		char = self.drop.char_at(row)
 		if char is None:
 			return None
 

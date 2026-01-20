@@ -18,6 +18,14 @@ optimized rendering.
 - **Graceful shutdown**: Handles Ctrl+C cleanly
 - **No external dependencies**: Uses Python standard library only
 
+## Running
+
+Execute without installing using `uvx`:
+
+```bash
+uvx git+https://github.com/4ster-light/pmatrix
+```
+
 ## Installation
 
 ### Using UV (recommended)

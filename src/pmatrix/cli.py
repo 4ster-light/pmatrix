@@ -12,7 +12,7 @@ def signal_handler(sig, frame) -> None:
 	sys.exit(0)
 
 
-if __name__ == "__main__":
+def main():
 	setup()
 
 	width, height = get_size()
