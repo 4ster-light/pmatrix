@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "smatrix"
+name = "pmatrix"
 version = "1.0.0"
 description = "A Matrix digital rain effect terminal application, written in Python"
 readme = "README.md"
@@ -12,7 +12,7 @@ keywords = ["matrix", "terminal", "animation", "rain", "effect"]
 requires-python = ">=3.10"
 
 [project.scripts]
-smatrix = "pmatrix.cli:main"
+pmatrix = "pmatrix.cli:main"
 
 [dependency-groups]
 dev = ["ruff>=0.7.0", "ty>=0.0.8"]
