@@ -20,7 +20,11 @@ optimized rendering.
 
 ## Running
 
-Execute without installing using `uvx`:
+Execute without installing using `nix run` or `uvx`:
+
+```bash
+nix run github:4ster-light/pmatrix
+```
 
 ```bash
 uvx git+https://github.com/4ster-light/pmatrix
@@ -28,65 +32,47 @@ uvx git+https://github.com/4ster-light/pmatrix
 
 ## Installation
 
-### Nix (recommended)
+### Using Nix (recommended)
 
-Run PMatrix without installing it:
-
-```bash
-nix run github:4ster-light/pmatrix --
-```
-
-If you want to enter a shell with the package available:
-
-```bash
-nix shell github:4ster-light/pmatrix -c bash
-```
-
-To install it into your Nix profile:
+Install directly from GitHub:
 
 ```bash
 nix profile install github:4ster-light/pmatrix
 ```
 
-If you want to pin a specific release, reference the tag explicitly:
+Or add the flake to your system config if you use NixOS.
+
+### Using UV
+
+Install directly from GitHub:
 
 ```bash
-nix run github:4ster-light/pmatrix/v1.0.1 --
+uv tool install git+https://github.com/4ster-light/pmatrix
 ```
 
-### Python [(uv)](https://docs.astral.sh/uv)
+### Using pip
 
-If you prefer Python tooling, install directly from GitHub:
+Install directly from GitHub:
 
 ```bash
-uv tool install git+https://github.com/4ster-light/pmatrix@v1.0.1
+pip install git+https://github.com/4ster-light/pmatrix
 ```
 
-Or with pip:
+### From source
 
-```bash
-pip install git+https://github.com/4ster-light/pmatrix@v1.0.1
-```
-
-### From source with Nix
-
-Clone the repository and enter the development shell:
+#### Nix
 
 ```bash
 git clone https://github.com/4ster-light/pmatrix
 cd pmatrix
-nix develop
+nix build
 ```
 
-Then run the app:
+The executable will be found at `./result/bin/pmatrix`, move it to a directory
+in _PATH_ like `/usr/bin` and you'll be able to access it from anywhere in your
+system.
 
-```bash
-nix run . --
-```
-
-### From source with uv
-
-Clone the repository and install locally:
+#### UV
 
 ```bash
 git clone https://github.com/4ster-light/pmatrix
@@ -94,26 +80,11 @@ cd pmatrix
 uv tool install .
 ```
 
-## Usage
-
-Run the program:
-
-```bash
-pmatrix
-```
-
-The program will display the Matrix digital rain effect in your terminal. Resize
-the terminal window to see the display adjust dynamically. Press Ctrl+C to exit.
-
 ## Requirements
 
 - Python 3.10 or later
 - A terminal that supports ANSI escape codes (most modern terminals)
 - Linux, macOS, or compatible terminal
-
-## Release
-
-The latest release is [v1.0.1](https://github.com/4ster-light/pmatrix/releases/tag/v1.0.1).
 
 ## License
 

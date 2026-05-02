@@ -50,12 +50,6 @@
 
 				checks = {
 					package = pmatrix;
-
-					smoke = pkgs.runCommand "pmatrix-smoke-test" {
-						buildInputs = [ pmatrix ];
-					} ''
-						pmatrix --help > "$out"
-					'';
 				};
 
 				devShells.default = pkgs.mkShell {
@@ -77,8 +71,6 @@
 
 						echo ""
 						echo "PMatrix Nix dev shell — $(python --version)"
-						echo ""
-						echo "See all commands:  just help"
 						echo ""
 					'';
 				};

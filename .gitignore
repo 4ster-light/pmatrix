@@ -26,6 +26,9 @@ wheels/
 .mypy_cache/
 .tox/
 
+# Nix
+result
+
 # IDE
 .idea/
 .vscode/
