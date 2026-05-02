@@ -28,37 +28,65 @@ uvx git+https://github.com/4ster-light/pmatrix
 
 ## Installation
 
-### Using UV (recommended)
+### Nix (recommended)
 
-Install directly from GitHub:
-
-```bash
-uv tool install git+https://github.com/4ster-light/pmatrix
-```
-
-Then run:
+Run PMatrix without installing it:
 
 ```bash
-pmatrix
+nix run github:4ster-light/pmatrix --
 ```
 
-### Using pip
-
-Clone the repository and install:
+If you want to enter a shell with the package available:
 
 ```bash
-pip install git+https://github.com/4ster-light/pmatrix
+nix shell github:4ster-light/pmatrix -c bash
 ```
 
-Then run:
+To install it into your Nix profile:
 
 ```bash
-pmatrix
+nix profile install github:4ster-light/pmatrix
 ```
 
-### From source with UV
+If you want to pin a specific release, reference the tag explicitly:
 
-Clone the repository:
+```bash
+nix run github:4ster-light/pmatrix/v1.0.1 --
+```
+
+### Python [(uv)](https://docs.astral.sh/uv)
+
+If you prefer Python tooling, install directly from GitHub:
+
+```bash
+uv tool install git+https://github.com/4ster-light/pmatrix@v1.0.1
+```
+
+Or with pip:
+
+```bash
+pip install git+https://github.com/4ster-light/pmatrix@v1.0.1
+```
+
+### From source with Nix
+
+Clone the repository and enter the development shell:
+
+```bash
+git clone https://github.com/4ster-light/pmatrix
+cd pmatrix
+nix develop
+```
+
+Then run the app:
+
+```bash
+nix run . --
+```
+
+### From source with uv
+
+Clone the repository and install locally:
 
 ```bash
 git clone https://github.com/4ster-light/pmatrix
@@ -66,11 +94,26 @@ cd pmatrix
 uv tool install .
 ```
 
+## Usage
+
+Run the program:
+
+```bash
+pmatrix
+```
+
+The program will display the Matrix digital rain effect in your terminal. Resize
+the terminal window to see the display adjust dynamically. Press Ctrl+C to exit.
+
 ## Requirements
 
 - Python 3.10 or later
 - A terminal that supports ANSI escape codes (most modern terminals)
 - Linux, macOS, or compatible terminal
+
+## Release
+
+The latest release is [v1.0.1](https://github.com/4ster-light/pmatrix/releases/tag/v1.0.1).
 
 ## License
 

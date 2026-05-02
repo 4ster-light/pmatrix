@@ -4,11 +4,18 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pmatrix"
-version = "1.0.0"
+version = "1.0.1"
 description = "A Matrix digital rain effect terminal application, written in Python"
 readme = "README.md"
 license = { text = "MIT" }
 keywords = ["matrix", "terminal", "animation", "rain", "effect"]
+classifiers = [
+	"License :: OSI Approved :: MIT License",
+	"Programming Language :: Python :: 3",
+	"Programming Language :: Python :: 3.10",
+	"Environment :: Console",
+]
+urls = { Homepage = "https://github.com/4ster-light/pmatrix", Repository = "https://github.com/4ster-light/pmatrix", Issues = "https://github.com/4ster-light/pmatrix/issues" }
 requires-python = ">=3.10"
 
 [project.scripts]
