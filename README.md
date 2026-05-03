@@ -37,7 +37,7 @@ uvx git+https://github.com/4ster-light/pmatrix
 Install directly from GitHub:
 
 ```bash
-nix profile install github:4ster-light/pmatrix
+nix profile add github:4ster-light/pmatrix
 ```
 
 Or add the flake to your system config if you use NixOS.
@@ -56,28 +56,6 @@ Install directly from GitHub:
 
 ```bash
 pip install git+https://github.com/4ster-light/pmatrix
-```
-
-### From source
-
-#### Nix
-
-```bash
-git clone https://github.com/4ster-light/pmatrix
-cd pmatrix
-nix build
-```
-
-The executable will be found at `./result/bin/pmatrix`, move it to a directory
-in _PATH_ like `/usr/bin` and you'll be able to access it from anywhere in your
-system.
-
-#### UV
-
-```bash
-git clone https://github.com/4ster-light/pmatrix
-cd pmatrix
-uv tool install .
 ```
 
 ## Requirements
