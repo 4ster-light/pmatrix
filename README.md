@@ -1,6 +1,16 @@
+<div align="center">
+
 # PMatrix
 
-A Matrix digital rain effect terminal application, written in Python.
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Sponsor](https://img.shields.io/badge/Sponsor-GitHub%20Sponsors-EA4AAA?logo=githubsponsors)](https://github.com/sponsors/4ster-light)
+
+**A Matrix digital rain effect terminal application, written in Python**
+
+</div>
+
+<br />
 
 ## Overview
 
@@ -57,6 +67,26 @@ Install directly from GitHub:
 ```bash
 pip install git+https://github.com/4ster-light/pmatrix
 ```
+
+### Podman/Docker
+
+Run the application in a container:
+
+```bash
+git clone https://github.com/4ster-light/pmatrix.git
+cd pmatrix
+nix build .#container
+podman load < result
+podman run -it --rm pmatrix
+```
+
+This will build the container image and run it interactively in your terminal
+using the provided image in the nix flake.
+
+> [!NOTE]
+> The container image is built using Nix, so you will need Nix installed to
+> build it. You may load it with either Podman or Docker. A prebuilt image will
+> be published in the future.
 
 ## Requirements
 
