@@ -44,11 +44,21 @@
           };
         };
 
+        containerImage = pkgs.dockerTools.buildLayeredImage {
+          name = "pmatrix";
+          tag = "latest";
+          contents = [ pmatrix ];
+          config = {
+            Cmd = [ "${pmatrix}/bin/pmatrix" ];
+          };
+        };
+
       in
       {
         packages = {
           default = pmatrix;
           pmatrix = pmatrix;
+          container = containerImage;
         };
 
         apps.default = flake-utils.lib.mkApp {
