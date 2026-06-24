@@ -1,5 +1,5 @@
 {
-  description = "pmatrix – Matrix digital rain terminal application";
+  description = "PMatrix – Matrix digital rain terminal application";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -20,6 +20,8 @@
         python = pkgs.python314;
         py = python.pkgs;
 
+        appDescription = "A Matrix digital rain effect terminal application";
+
         pmatrix = py.buildPythonApplication {
           pname = "pmatrix";
           version = "1.0.1";
@@ -37,7 +39,7 @@
           doCheck = false;
 
           meta = with lib; {
-            description = "A Matrix digital rain effect terminal application, written in Python";
+            description = appDescription;
             homepage = "https://github.com/4ster-light/pmatrix";
             license = licenses.mit;
             mainProgram = "pmatrix";
@@ -49,7 +51,7 @@
           tag = "latest";
           contents = [ pmatrix ];
           config = {
-            Cmd = [ "${pmatrix}/bin/pmatrix" ];
+            Entrypoint = [ "${pmatrix}/bin/pmatrix" ];
           };
         };
 
@@ -61,8 +63,10 @@
           container = containerImage;
         };
 
-        apps.default = flake-utils.lib.mkApp {
-          drv = pmatrix;
+        apps.default = {
+          type = "app";
+          program = "${pmatrix}/bin/pmatrix";
+          meta.description = appDescription;
         };
 
         checks = {
@@ -81,15 +85,15 @@
           UV_PROJECT_ENVIRONMENT = ".venv";
 
           shellHook = ''
-            						if [ ! -d .venv ]; then
-            							echo "→ Creating project venv..."
-            							uv venv
-            						fi
+            if [ ! -d .venv ]; then
+            	echo "→ Creating project venv..."
+            	uv venv
+            fi
 
-            						echo ""
-            						echo "PMatrix Nix dev shell — $(python --version)"
-            						echo ""
-            					'';
+            echo ""
+            echo "PMatrix Nix dev shell — $(python --version)"
+            echo ""
+          '';
         };
       }
     );
