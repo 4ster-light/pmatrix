@@ -17,14 +17,14 @@
       let
         pkgs = import nixpkgs { inherit system; };
         lib = pkgs.lib;
-        python = pkgs.python314;
+        python = pkgs.python311;
         py = python.pkgs;
 
         appDescription = "A Matrix digital rain effect terminal application";
 
         pmatrix = py.buildPythonApplication {
           pname = "pmatrix";
-          version = "1.0.1";
+          version = "1.0.2";
           format = "pyproject";
           src = ./.;
 
