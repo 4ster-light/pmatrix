@@ -2,7 +2,7 @@
 
 # PMatrix
 
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Sponsor](https://img.shields.io/badge/Sponsor-GitHub%20Sponsors-EA4AAA?logo=githubsponsors)](https://github.com/sponsors/4ster-light)
 
@@ -30,7 +30,7 @@ optimized rendering.
 
 ## Running
 
-Execute without installing using `nix run` or `uvx`:
+Execute without installing using `nix run`, `uvx`, or the container image:
 
 ```bash
 nix run github:4ster-light/pmatrix
@@ -40,11 +40,13 @@ nix run github:4ster-light/pmatrix
 uvx git+https://github.com/4ster-light/pmatrix
 ```
 
+```bash
+podman run -it --rm ghcr.io/4ster-light/pmatrix
+```
+
 ## Installation
 
 ### Using Nix (recommended)
-
-Install directly from GitHub:
 
 ```bash
 nix profile add github:4ster-light/pmatrix
@@ -54,21 +56,23 @@ Or add the flake to your system config if you use NixOS.
 
 ### Using UV
 
-Install directly from GitHub:
-
 ```bash
 uv tool install git+https://github.com/4ster-light/pmatrix
 ```
 
 ### Using pip
 
-Install directly from GitHub:
-
 ```bash
 pip install git+https://github.com/4ster-light/pmatrix
 ```
 
 ### Podman/Docker
+
+```bash
+podman pull ghcr.io/4ster-light/pmatrix
+```
+
+#### Build from source
 
 Run the application in a container:
 
@@ -85,12 +89,11 @@ using the provided image in the nix flake.
 
 > [!NOTE]
 > The container image is built using Nix, so you will need Nix installed to
-> build it. You may load it with either Podman or Docker. A prebuilt image will
-> be published in the future.
+> build it. You may load it with either Podman or Docker.
 
 ## Requirements
 
-- Python 3.10 or later
+- Python 3.11 or later
 - A terminal that supports ANSI escape codes (most modern terminals)
 - Linux, macOS, or compatible terminal
 

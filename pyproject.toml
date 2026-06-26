@@ -1,34 +1,56 @@
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
-
 [project]
 name = "pmatrix"
-version = "1.0.1"
-description = "A Matrix digital rain effect terminal application, written in Python"
+version = "1.0.2"
+description = "A Matrix digital rain effect terminal application"
 readme = "README.md"
-license = { text = "MIT" }
+license = { file = "LICENSE" }
 keywords = ["matrix", "terminal", "animation", "rain", "effect"]
+requires-python = ">=3.11"
+authors = [{ name = "4ster-light" }]
 classifiers = [
+    "Development Status :: 5 - Production/Stable",
 	"License :: OSI Approved :: MIT License",
 	"Programming Language :: Python :: 3",
 	"Programming Language :: Python :: 3.10",
 	"Environment :: Console",
+	"Topic :: Artistic Software",
+	"Topic :: Terminals",
+	"Topic :: Utilities",
 ]
-urls = { Homepage = "https://github.com/4ster-light/pmatrix", Repository = "https://github.com/4ster-light/pmatrix", Issues = "https://github.com/4ster-light/pmatrix/issues" }
-requires-python = ">=3.10"
+
+[project.urls]
+Homepage = "https://github.com/4ster-light/pmatrix"
+Repository = "https://github.com/4ster-light/pmatrix"
+Issues = "https://github.com/4ster-light/pmatrix/issues"
 
 [project.scripts]
 pmatrix = "pmatrix.cli:main"
 
 [dependency-groups]
-dev = ["ruff>=0.15.4", "ty>=0.0.20"]
+dev = ["ruff>=0.15.20", "ty>=0.0.54"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+skip-excluded-dirs = true
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/pmatrix"]
+only-packages = true
+
+[tool.hatch.build.targets.sdist]
+include = [
+	"/src",
+	"/README.md",
+	"/LICENSE",
+	"/pyproject.toml",
+]
 
 [tool.ruff]
 line-length = 120
+target-version = "py310"
 
 [tool.ruff.format]
 quote-style = "double"
